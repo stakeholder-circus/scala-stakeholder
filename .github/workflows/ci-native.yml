@@ -5,11 +5,18 @@ on:
   pull_request:
 
 jobs:
-  scaffold-check:
+  native:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: sbt
       - run: python3 scripts/validate_scaffold.py
+      - run: sbt test stage
+      - run: ./target/universal/stage/bin/scala-stakeholder --list-values

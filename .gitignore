@@ -301,3 +301,7 @@ $RECYCLE.BIN/
 # stakeholder-circus governance baseline
 .direnv/
 .result/
+target/
+project/target/
+.bsp/
+.metals/

@@ -1,15 +1,17 @@
-  # Scala Toolchain
+# Scala Toolchain
 
-  - State: scaffold-only next-20 prep
-  - Toolchain source: `built-in`
+- State: deterministic first tranche implemented locally
+- Toolchain source: `built-in`
 
-  ## Planned commands after promotion
-    - `scala -version`
+## Native commands
+- `scala -version`
 - `sbt --script-version`
+- `python3 scripts/validate_scaffold.py`
+- `sbt test stage`
 
-  ## Scaffold-time checks
-  - `python3 scripts/validate_scaffold.py`
-  - `/nix/var/nix/profiles/default/bin/nix --extra-experimental-features 'nix-command flakes' flake lock`
+## Docker commands
+- `docker build -t scala-stakeholder .`
+- `docker run --rm scala-stakeholder --list-values`
 
-  ## Current limitation
-  - Scala and sbt are already available.
+## Current limitation
+- The deterministic tranche is implemented; live-provider/runtime work remains deferred.

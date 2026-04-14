@@ -1,5 +1,5 @@
 {
-  description = "scala-stakeholder scaffold";
+  description = "scala-stakeholder deterministic tranche";
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
   outputs = { self, nixpkgs }:
     let
@@ -11,9 +11,10 @@
         in {
           check = pkgs.writeShellApplication {
             name = "check";
-            runtimeInputs = [ pkgs.python3 ];
+            runtimeInputs = [ pkgs.python3 pkgs.sbt pkgs.jdk21 ];
             text = ''
               python3 scripts/validate_scaffold.py
+              sbt test stage
             '';
           };
           default = self.packages.${system}.check;
