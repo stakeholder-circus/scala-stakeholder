@@ -8,7 +8,7 @@ jobs:
   docker-smoke:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - run: docker build -t scala-stakeholder .
       - run: docker run --rm scala-stakeholder --list-values
       - run: docker run --rm scala-stakeholder --output-format json --focus-family code_analyzer --seed 123
