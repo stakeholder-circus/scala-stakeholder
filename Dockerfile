@@ -1,5 +1,8 @@
 FROM eclipse-temurin:24-jdk AS build
 WORKDIR /app
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends ca-certificates curl \
+    && rm -rf /var/lib/apt/lists/*
 RUN curl -fsSL https://github.com/sbt/sbt/releases/download/v1.10.1/sbt-1.10.1.tgz | tar -xz -C /opt \
     && ln -s /opt/sbt/bin/sbt /usr/local/bin/sbt
 COPY project ./project
